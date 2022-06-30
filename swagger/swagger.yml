@@ -1,0 +1,32 @@
+swagger: "2.0"
+info: {}
+basePath: /v1
+paths:
+  /contabilizar_orden_pago/:
+    post:
+      tags:
+      - contabilizar_orden_pago
+      description: create Contabilizar_orden_pago
+      operationId: ContabilizarOrdenPagoController.Create
+      parameters:
+      - in: body
+        name: body
+        description: body for Contabilizar_orden_pago content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Contabilizar_orden_pago'
+      responses:
+        "201":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Contabilizar_orden_pago'
+        "403":
+          description: body is empty
+definitions:
+  models.Contabilizar_orden_pago:
+    title: Contabilizar_orden_pago
+    type: object
+tags:
+- name: contabilizar_orden_pago
+  description: |
+    ContabilizarOrdenPagoController operations for Contabilizar_orden_pago
