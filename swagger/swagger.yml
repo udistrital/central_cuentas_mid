@@ -1,32 +1,39 @@
 swagger: "2.0"
-info: {}
+info:
+  title: beego Central Cuentas API
+  description: beego has a very cool tools to autogenerate documents for your API
+  version: 1.12.1
+  termsOfService: http://beego.me/
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
   /contabilizar_orden_pago/:
     post:
       tags:
       - contabilizar_orden_pago
-      description: create Contabilizar_orden_pago
+      description: create contabilizar_orden_pago
       operationId: ContabilizarOrdenPagoController.Create
       parameters:
       - in: body
         name: body
-        description: body for Contabilizar_orden_pago content
+        description: body for contabilizar_orden_pago content
         required: true
         schema:
-          $ref: '#/definitions/models.Contabilizar_orden_pago'
+          $ref: '#/definitions/{}'
       responses:
         "201":
           description: ""
           schema:
-            $ref: '#/definitions/models.Contabilizar_orden_pago'
+            $ref: '#/definitions/{}'
         "403":
           description: body is empty
 definitions:
-  models.Contabilizar_orden_pago:
-    title: Contabilizar_orden_pago
+  '{}':
+    title: '{}'
     type: object
 tags:
 - name: contabilizar_orden_pago
   description: |
-    ContabilizarOrdenPagoController operations for Contabilizar_orden_pago
+    ContabilizarOrdenPagoController operations for contabilizar_orden_pago

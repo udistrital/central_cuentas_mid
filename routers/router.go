@@ -1,3 +1,9 @@
+// @APIVersion 1.12.1
+// @Title beego Central Cuentas API
+// @Description beego has a very cool tools to autogenerate documents for your API
+// @TermsOfServiceUrl http://beego.me/
+// @License Apache 2.0
+// @LicenseUrl http://www.apache.org/licenses/LICENSE-2.0.html
 package routers
 
 import (
@@ -14,6 +20,5 @@ func init() {
 			),
 		),
 	)
-
 	beego.AddNamespace(ns)
 }
