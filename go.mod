@@ -1,4 +1,4 @@
-module central_cuentas_mid
+module github.com/udistrital/central_cuentas_mid
 
 go 1.17
 

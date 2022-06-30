@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "central_cuentas_mid/routers"
+	_ "github.com/udistrital/central_cuentas_mid/routers"
 
 	"github.com/astaxie/beego/plugins/cors"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
