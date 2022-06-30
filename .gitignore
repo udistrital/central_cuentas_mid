@@ -1,7 +1,9 @@
 # Binarios y temporales
-*.exe*
+*.exe
+*~
 *.zip
-movimientos_contables_mid*
+*.log
+central_cuentas_mid
 main
 .scannerwork/
 *.tmp
@@ -11,7 +13,7 @@ main
 
 # Variables de Entorno
 *.env
-!template.env
+!*template*.env
 
 # Swagger
 swagger/**
