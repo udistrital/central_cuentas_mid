@@ -1,7 +1,11 @@
 package controllers
 
 import (
+	"central_cuentas_mid/models"
+	"encoding/json"
 	"net/http"
+
+	orden_pago "central_cuentas_mid/helpers/crud/orden_pago"
 
 	"github.com/astaxie/beego"
 
@@ -28,13 +32,20 @@ func (c *ContabilizarOrdenPagoController) URLMapping() {
 func (c *ContabilizarOrdenPagoController) Post() {
 	defer e.ErrorControlController(c.Controller, "ContabilizarOrdenPagoController")
 
-	idStr := "e"
-	if idStr != "" {
-		c.Ctx.Output.SetStatus(http.StatusOK)
-		c.Data["json"] = map[string]interface{}{"Success": true, "Status": "200", "Message": "Successful", "Data": "OK"}
+	var v models.ContabilizacionOrdenPago = models.ContabilizacionOrdenPago{}
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
+		var op interface{}
+		if err := orden_pago.GetOrdenPagoId(v.OrdenPagoId, op); err == nil {
+			//c.Data["json"] = "OK"
+			c.Ctx.Output.SetStatus(http.StatusCreated)
+			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Successful", "Data": "OK"}
+		} else {
+			panic(err)
+		}
 	} else {
-		c.Ctx.Output.SetStatus(http.StatusInternalServerError)
-		c.Data["json"] = map[string]interface{}{"Success": false, "Status": "500", "Message": "Fail", "Data": "fail"}
+		panic(map[string]interface{}{"funcion": "PostTransaccionMovimientos", "err": err.Error(), "status": "400"})
 	}
+
 	c.ServeJSON()
+
 }
