@@ -37,6 +37,7 @@ func (c *ContabilizarOrdenPagoController) Post() {
 		var op interface{}
 		if err := orden_pago.GetOrdenPagoId(v.OrdenPagoId, op); err == nil {
 			//c.Data["json"] = "OK"
+
 			c.Ctx.Output.SetStatus(http.StatusCreated)
 			c.Data["json"] = map[string]interface{}{"Success": true, "Status": "201", "Message": "Successful", "Data": "OK"}
 		} else {

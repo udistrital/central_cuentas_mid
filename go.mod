@@ -11,6 +11,14 @@ require (
 )
 
 require (
+	github.com/globalsign/mgo v0.0.0-20181015135952-eeefdecb41b8 // indirect
+	github.com/go-playground/locales v0.13.0 // indirect
+	github.com/go-playground/universal-translator v0.17.0 // indirect
+	github.com/leodido/go-urn v1.2.1 // indirect
+	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
+)
+
+require (
 	github.com/beego/bee v1.12.3 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
