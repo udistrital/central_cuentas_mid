@@ -34,8 +34,7 @@ func (c *ContabilizarOrdenPagoController) Post() {
 
 	var v models.ContabilizacionOrdenPago = models.ContabilizacionOrdenPago{}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
-		var op interface{}
-		if err := orden_pago.GetOrdenPagoId(v.OrdenPagoId, op); err == nil {
+		if err := orden_pago.PostMovimientosOrdenPagoId(v.OrdenPagoId); err == nil {
 			//c.Data["json"] = "OK"
 
 			c.Ctx.Output.SetStatus(http.StatusCreated)

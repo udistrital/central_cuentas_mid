@@ -7,6 +7,7 @@ import (
 	"time"
 
 	helpers "central_cuentas_mid/helpers"
+	m "central_cuentas_mid/models"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -15,9 +16,10 @@ import (
 	r "github.com/udistrital/utils_oas/request"
 )
 
-func GetOrdenPagoId(id string, orden_pago interface{}) (outputError map[string]interface{}) {
+func PostMovimientosOrdenPagoId(id string) (outputError map[string]interface{}) {
 	const funcion string = "GetOrdenPagoId"
 	var fullResponse map[string]interface{}
+	var orden m.OrdenPago
 	defer e.ErrorControlFunction(funcion+" - Unhandled Error!", strconv.Itoa(http.StatusInternalServerError))
 
 	url := beego.AppConfig.String("CentralCuentasCrudService") + "/orden-pago/" + id
@@ -31,23 +33,39 @@ func GetOrdenPagoId(id string, orden_pago interface{}) (outputError map[string]i
 		outputError = e.Error(funcion+" - r.GetJsonTest(url, &orden-pago)", err, strconv.Itoa(status))
 	}
 
+	helpers.LimpiezaRespuestaRefactorBody(fullResponse, &orden)
+	consecutivoId, _ := strconv.Atoi(orden.Consecutivo)
+
+	var movimientos []models.MovimientoResumido
+
+	for _, v := range orden.MovimientoContable {
+		var mov models.MovimientoResumido = models.MovimientoResumido{
+			CuentaId:         v.ID,
+			NombreCuenta:     v.Nombre,
+			TipoMovimientoId: 45,
+			Valor:            float64(v.Valor),
+			Descripcion:      orden.Detalle,
+			Activo:           false,
+		}
+		movimientos = append(movimientos, mov)
+	}
+
 	var transaccion models.TransaccionMovimientos = models.TransaccionMovimientos{
-		ConsecutivoId:    fullResponse["Consecutivo"].(int),
+		ConsecutivoId:    consecutivoId,
 		Etiquetas:        "",
-		Descripcion:      "",
+		Descripcion:      orden.Detalle,
 		FechaTransaccion: time.Time{},
 		Activo:           true,
-		Movimientos:      []models.MovimientoResumido{},
+		Movimientos:      movimientos,
 	}
 
 	var response map[string]interface{}
 
-	if err := r.SendJson(beego.AppConfig.String("MovimientosContablesMidService")+"//transaccion_movimientos", "POST", &response, transaccion); err != nil {
+	if err := r.SendJson(beego.AppConfig.String("MovimientosContablesMidService")+"/transaccion_movimientos", "POST", &response, transaccion); err != nil {
 		logs.Error(err)
 		outputError = map[string]interface{}{"funcion": "/RegistroTransaccionMovimientos9", "err": err.Error(), "status": "502"}
 		return outputError
 	}
 
-	helpers.LimpiezaRespuestaRefactorBody(fullResponse, &orden_pago)
 	return
 }
