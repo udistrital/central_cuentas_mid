@@ -7,9 +7,9 @@
 package routers
 
 import (
-	"central_cuentas_mid/controllers"
-
 	"github.com/astaxie/beego"
+
+	"github.com/udistrital/central_cuentas_mid/controllers"
 )
 
 func init() {
