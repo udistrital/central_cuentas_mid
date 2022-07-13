@@ -24,7 +24,7 @@ func (c *ContabilizarOrdenPagoController) URLMapping() {
 // Post ...
 // @Title Create
 // @Description create contabilizar_orden_pago
-// @Param	body		body 	{}	true		"body for contabilizar_orden_pago content"
+// @Param	body		body 	models.ContabilizacionOrdenPago	true		"body for contabilizar_orden_pago content"
 // @Success 201 {object} {}
 // @Failure 403 body is empty
 // @router / [post]

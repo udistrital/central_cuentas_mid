@@ -27,7 +27,7 @@
                         "description": "body for contabilizar_orden_pago content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/{}"
+                            "$ref": "#/definitions/models.ContabilizacionOrdenPago"
                         }
                     }
                 ],
@@ -46,6 +46,18 @@
         }
     },
     "definitions": {
+        "models.ContabilizacionOrdenPago": {
+            "title": "ContabilizacionOrdenPago",
+            "type": "object",
+            "properties": {
+                "aprobacion": {
+                    "type": "boolean"
+                },
+                "ordenPagoId": {
+                    "type": "string"
+                }
+            }
+        },
         "{}": {
             "title": "{}",
             "type": "object"
