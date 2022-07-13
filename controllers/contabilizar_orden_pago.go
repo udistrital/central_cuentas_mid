@@ -1,14 +1,13 @@
 package controllers
 
 import (
-	"central_cuentas_mid/models"
 	"encoding/json"
 	"net/http"
 
-	orden_pago "central_cuentas_mid/helpers/crud/orden_pago"
-
 	"github.com/astaxie/beego"
 
+	orden_pago "github.com/udistrital/central_cuentas_mid/helpers/crud/orden_pago"
+	"github.com/udistrital/central_cuentas_mid/models"
 	e "github.com/udistrital/utils_oas/errorctrl"
 )
 

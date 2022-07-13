@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"time"
 
-	helpers "central_cuentas_mid/helpers"
-	m "central_cuentas_mid/models"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+
+	"github.com/udistrital/central_cuentas_mid/helpers"
+	m "github.com/udistrital/central_cuentas_mid/models"
 	"github.com/udistrital/movimientos_contables_mid/models"
 	e "github.com/udistrital/utils_oas/errorctrl"
 	r "github.com/udistrital/utils_oas/request"
