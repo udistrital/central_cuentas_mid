@@ -21,7 +21,7 @@ paths:
         description: body for contabilizar_orden_pago content
         required: true
         schema:
-          $ref: '#/definitions/{}'
+          $ref: '#/definitions/models.ContabilizacionOrdenPago'
       responses:
         "201":
           description: ""
@@ -33,6 +33,14 @@ definitions:
   '{}':
     title: '{}'
     type: object
+  models.ContabilizacionOrdenPago:
+    title: ContabilizacionOrdenPago
+    type: object
+    properties:
+      aprobacion:
+        type: boolean
+      ordenPagoId:
+        type: string
 tags:
 - name: contabilizar_orden_pago
   description: |

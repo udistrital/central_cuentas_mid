@@ -7,13 +7,13 @@ import (
 
 func init() {
 
-	beego.GlobalControllerRouter["github.com/udistrital/central_cuentas_mid/controllers:ContabilizarOrdenPagoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/central_cuentas_mid/controllers:ContabilizarOrdenPagoController"],
-		beego.ControllerComments{
-			Method:           "Post",
-			Router:           "/",
-			AllowHTTPMethods: []string{"post"},
-			MethodParams:     param.Make(),
-			Filters:          nil,
-			Params:           nil})
+    beego.GlobalControllerRouter["central_cuentas_mid/controllers:ContabilizarOrdenPagoController"] = append(beego.GlobalControllerRouter["central_cuentas_mid/controllers:ContabilizarOrdenPagoController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: "/",
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
 
 }
